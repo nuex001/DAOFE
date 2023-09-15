@@ -1,0 +1,250 @@
+.home {
+    width: 100%;
+    min-height: 100vh;
+    padding: 2em;
+    padding: 10em 15em 4em 15em;
+    display: flex;
+    gap: 4em;
+}
+
+.home .sidebar {
+    width: 12%;
+    height: 200px;
+    border-radius: 10px;
+    border: 0.1px solid #69696a;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+}
+
+.home .sidebar img {
+    display: block;
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.home .sidebar h1 {
+    color: #fff;
+    font-size: 2em;
+    margin-top: 1em;
+}
+
+.home .sidebar h2 {
+    color: #fff;
+    font-size: 1.4em;
+    margin-top: 0.5em;
+    opacity: 0.7;
+    font-family: monospace;
+}
+
+/*  */
+.home main {
+    width: calc(100% - 20%);
+    height: auto;
+    border-radius: 10px;
+    /* border: 0.1px solid #69696a; */
+    padding: 2em;
+    margin-left: auto;
+}
+
+.home main h1 {
+    color: #fff;
+    font-size: 4em;
+}
+
+.home main h1 {
+    color: #fff;
+    font-size: 4em;
+}
+
+.home main .header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home main .header form {
+    width: 40%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    padding: 0em 2em;
+    border: 0.1px solid #69696a;
+    border-radius: 30px;
+    color: #fff;
+    margin: 2em 0em;
+}
+
+.home main .header form .icon {
+    font-size: 2em;
+    cursor: pointer;
+}
+
+.home main .header form input {
+    width: 100%;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 1.8em;
+}
+
+.home main .header a {
+    font-size: 1.4em;
+    padding: 1em 2em;
+    border: 0.1px solid #69696a;
+    border-radius: 30px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.home main .rows {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4em 0em;
+}
+
+.home main .rows .box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    gap: 1em 0em;
+    border-radius: 10px;
+    border: 0.1px solid #69696a;
+}
+
+.home main .rows .box .box-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.home main .rows .box .box-header .sec1 {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.home main .rows .box .box-header .sec1 img {
+    object-fit: cover;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.home main .rows .box .box-header .sec1 p {
+    font-size: 1.4em;
+    color: #fff;
+}
+
+.home main .rows .box .box-header .status {
+    font-size: 1.4em;
+    padding: 0.5em 1.8em;
+    border-radius: 30px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #21B670;
+}
+
+.home main .rows .box .box-header .status.closed {
+    background-color: #BB6BD9;
+}
+
+.home main .rows .box h3 {
+    font-size: 3em;
+    color: #fff;
+    padding-right: 0.5em;
+    margin-top: 0.5em;
+}
+
+.home main .rows .box h4 {
+    font-size: 2em;
+    color: #fff;
+    padding-right: 0.5em;
+}
+
+.home main .rows .box span {
+    font-size: 1.4em;
+    color: #fff;
+    opacity: 0.7;
+    padding-right: 0.5em;
+    margin-top: 1em;
+}
+
+
+
+/* ************MEDIA QUERRY********************** */
+
+/* ********@MOBILE********* */
+
+
+@media (max-width:768px) {
+    .home {
+        width: 100%;
+        min-height: 100vh;
+        padding: 2em;
+        padding: 10em 1em 4em 1em;
+        display: flex;
+        gap: 4em;
+    }
+
+    .home .sidebar {
+        position: absolute;
+        width: 60%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .home main {
+        width: 100%;
+        margin-top: 25em;
+        font-size: 8px;
+        padding: 2em 1em;
+    }
+
+    .home main .header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        /*  */
+        flex-wrap: wrap;
+    }
+
+    .home main .header form {
+        width: 100%;
+    }
+
+    .home main .header a {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2em;
+        font-size: 2em;
+    }
+
+    .home main .rows .box h3 {
+        font-size: 2em;
+        padding-right: 0em;
+    }
+
+    .home main .rows .box h4 {
+        font-size: 1.4em;
+        padding-right: 0em;
+    }
+}

@@ -1,0 +1,326 @@
+.proposal {
+    width: 100%;
+    min-height: 100vh;
+    padding: 2em;
+    padding: 10em 15em 4em 15em;
+    display: flex;
+    justify-content: space-between;
+    gap: 4em;
+}
+
+.proposal main {
+    display: block;
+    width: calc(100% - 30%);
+    /* border: 2px solid #333; */
+    margin-right: auto;
+}
+
+.proposal .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+    width: 25%;
+    /* border: 2px solid #333; */
+    margin-right: auto;
+}
+
+.proposal main .back {
+    display: flex;
+    align-items: center;
+    font-size: 1.4em;
+    gap: 0.5em;
+    color: #fff;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.proposal main h1 {
+    color: #fff;
+    font-size: 4em;
+    margin: 0.5em 0em;
+}
+
+.proposal main .headcont {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    color: #fff;
+    margin-bottom: 4em;
+}
+
+.proposal main .headcont .status {
+    font-size: 1.4em;
+    padding: 0.5em 1.8em;
+    border-radius: 30px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #21B670;
+}
+.proposal main .headcont .status.closed {
+    background-color: #BB6BD9;
+}
+
+.proposal main .headcont img {
+    object-fit: cover;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.proposal main .headcont span {
+    font-size: 1.4em;
+    opacity: 0.7;
+}
+
+.proposal main .headcont .shareBtn {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    font-size: 1.4em;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.proposal main .text {
+    max-height: 400px;
+    position: relative;
+    overflow-y: hidden;
+    padding-bottom: 4em;
+    padding-bottom: 4em;
+    transition: height 500ms ease-in-out;
+}
+
+.proposal main .text.more {
+    max-height: none;
+    height: auto;
+    position: relative;
+    overflow-y: hidden;
+}
+
+.proposal main .text p {
+    font-size: 1.8em;
+    line-height: 25px;
+    padding-right: 1em;
+    color: #fff;
+    margin: 1em 0em;
+    opacity: 0.7;
+}
+
+.proposal main .text img {
+    object-fit: contain;
+    width: 100%;
+}
+
+.proposal main .text .moreCont {
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: #1C1B20;
+}
+
+.proposal main .text .moreCont .btn {
+    font-size: 1.4em;
+    padding: 0.8em 2em;
+    border-radius: 30px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.8);
+    /* background-color: #1C1B20; */
+    cursor: pointer;
+    border: 1px solid #333;
+}
+
+.proposal .sidebar .info {
+    width: 100%;
+    height: auto;
+    padding: 0em 0em;
+    border: 1px solid #333;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.proposal .sidebar .info h1 {
+    width: 100%;
+    padding: 1em 1em;
+    font-size: 1.4em;
+    border-bottom: 1px solid #333;
+    color: #fff;
+}
+
+.proposal .sidebar .info .txt {
+    width: 100%;
+    height: auto;
+    padding: 1em 1em;
+    font-size: 1.4em;
+    color: #fff;
+}
+
+.proposal .sidebar .info .txt li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 0em;
+    font-size: 1em;
+    color: #fff;
+}
+
+.proposal .sidebar .info .txt li span {
+    opacity: 0.7;
+}
+
+.proposal .sidebar .info .txt h4 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.proposal .sidebar .info .txt .progress_cont {
+    width: 100%;
+    height: 8px;
+    background-color: #333;
+    border-radius: 10px;
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
+}
+
+.proposal .sidebar .info .txt .progress_cont .progress_bar {
+    /* width: 60%; */
+    height: inherit;
+    background-color: #2d2dcd;
+    border-radius: inherit;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.proposal main .child .vote_cont {
+    width: 100%;
+    margin-top: 4em;
+    height: auto;
+    border-radius: 20px;
+    border: 1px solid #333;
+    padding-bottom: 2em;
+}
+
+.proposal main .child .vote_cont h1 {
+    width: 100%;
+    padding: 1em 1em;
+    font-size: 2em;
+    border-bottom: 1px solid #333;
+    color: #fff;
+}
+
+.proposal main .child .vote_cont .btn {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1em auto;
+    color: #fff;
+    font-size: 2em;
+    height: 3em;
+    border-radius: 30px;
+    cursor: pointer;
+    border: 0.9px solid;
+    border-color: #333;
+    transition: border 500ms ease-in-out;
+}
+
+.proposal main .child .vote_cont .btn:hover {
+    border-color: #fff;
+}
+
+.proposal main .child .vote_cont button {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1em auto;
+    color: #fff;
+    font-size: 2em;
+    height: 3em;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 30px;
+    background-color: #2d2dcd;
+}
+
+.proposal main .child .votes {
+    width: 100%;
+    margin-top: 4em;
+    height: auto;
+    transform-origin: bottom;
+    transition: height 500ms ease-in-out;
+    border-radius: 20px;
+    border: 1px solid #333;
+    /* padding-bottom: 2em; */
+}
+
+.proposal main .child .votes h1 {
+    width: 100%;
+    padding: 1em 1em;
+    font-size: 2em;
+    border-bottom: 1px solid #333;
+    color: #fff;
+}
+
+.proposal main .child .votes h1 span {
+    font-size: 0.7em;
+    opacity: 0.7;
+}
+
+.proposal main .child .votes li {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    justify-content: space-between;
+    border-bottom: 1px solid #333;
+    padding: 1em 2em;
+    font-size: 1.6em;
+}
+
+.proposal main .child .votes li:last-child {
+    border-bottom: none;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.proposal main .child .votes li .pf {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.proposal main .child .votes li .pf img {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+
+/* ************MEDIA QUERRY********************** */
+
+/* ********@MOBILE********* */
+
+
+@media (max-width:768px) {
+    .proposal {
+        padding: 10em 1em 4em 1em;
+        flex-direction: column;
+    }
+
+    .proposal main {
+        width: 100%;
+        font-size: 8px;
+    }
+
+    .proposal .sidebar {
+        gap: 4em;
+        width: 100%;
+    }
+}
