@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import "../../css/create.css"
 import { BsArrowLeft, BsInfoCircle } from 'react-icons/bs'
+import { BiError } from 'react-icons/bi'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import ipfs from '../../utils/Ipfs';
 import { useEthersSigner } from '../../utils/ethers';
 import { useWalletClient } from 'wagmi'
@@ -10,6 +12,7 @@ import { ethers } from 'ethers';
 function CreateProposal() {
   const [connected, setConnected] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [submitLoading, setSubmitLoading] = useState(false);
   const [formTxt, setFormTxt] = useState({
     title: "",
     amount: 0,
@@ -18,30 +21,34 @@ function CreateProposal() {
   })
   const { title, description, amount, recipent } = formTxt;
   const signer = useEthersSigner();
-  const { data: walletClient } = useWalletClient()
+  const { data: walletClient } = useWalletClient();
+  const [error, setError] = useState(false);
+  const [success, setsuccess] = useState(false);
+
   const saveToContract = async (desc) => {
-    if (walletClient) {
-      console.log(title, desc);
-      const contract = new ethers.Contract(
-        contractAddress,
-        contractAbi,
-        signer
-      );
-      const amountInWei = ethers.utils.parseUnits(amount, 'ether');
-      const tx = await contract.createProposal(desc, title, amountInWei, recipent);
-      // const eventName = 'NewProposal';
-      // const filter = {
-      //   address: contractAddress,
-      //   topics: [ethers.utils.id(eventName)] // Use ethers.utils.id to get the event topic
-      // };
-
-      // // Wait for the "NewProposal" event to be emitted
-      // contract.once(filter, (event) => {
-      //   console.log('NewProposal event received:', event);
-      //   // Handle the event data here
-      // });
-
-      // console.log(tx);
+    try {
+      if (walletClient) {
+        console.log(title, desc);
+        const contract = new ethers.Contract(
+          contractAddress,
+          contractAbi,
+          signer
+        );
+        const amountInWei = ethers.utils.parseUnits(amount, 'ether');
+        const tx = await contract.createProposal(desc, title, amountInWei, recipent);
+        setFormTxt({
+          title: "",
+          amount: 0,
+          recipent: "",
+          description: "",
+        })
+        setsuccess(true);
+        setTimeout(() => {
+        setsuccess(false);
+        }, 5000);
+      }
+    } catch (error) {
+      // console.log(error);
     }
   }
 
@@ -49,6 +56,8 @@ function CreateProposal() {
     e.preventDefault();
     if (walletClient) {
       if (description.trim() !== '' && title.trim() !== '' && parseInt(amount) !== 0 && recipent.trim() !== '') {
+        setError(false);
+        setSubmitLoading(true);
         // Replace \n, \r, and \n\r with <p> tags
         let htmlText = description.replace(/(\n\r?|\r\n?)/g, '</p><p>');
         htmlText = '<p>' + htmlText + '</p>';
@@ -64,7 +73,10 @@ function CreateProposal() {
         const { cid } = await ipfs.add(htmlText);
         // setContent(htmlText);
         // save to contract
-        saveToContract(cid.toString());
+      await  saveToContract(cid.toString());
+      setSubmitLoading(false);
+      }else{
+        setError(true)
       }
     }
   };
@@ -105,9 +117,33 @@ function CreateProposal() {
           <BsArrowLeft /> Back
         </div>
         {
+          connected && !error && !submitLoading && !success &&
+          <p className="info">
+            <BsInfoCircle /> To create proposals, you should possess at least 100 Buidl tokens.
+          </p>
+        }
+        {
           !connected &&
           <p className="info">
             <BsInfoCircle /> You need to connect your wallet in order to submit a proposal.
+          </p>
+        }
+        {
+          error &&
+          <p className="info" style={{color:"crimson"}}>
+            <BiError /> Please Fill all Inputs.
+          </p>
+        }
+        {
+          submitLoading &&
+          <p className="info">
+            <AiOutlineLoading3Quarters className='loadingIcon'/> Loading...
+          </p>
+        }
+        {
+          success &&
+          <p className="info" style={{color:"green"}}>
+            Proposal created.
           </p>
         }
         <div className="row">

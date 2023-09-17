@@ -92,7 +92,6 @@ export const formatProposals = async (tx) => {
                 endTime: time,
                 executed: list.executed,
             };
-            console.log(proposal);
             proposals.push(proposal);
         }
     }
