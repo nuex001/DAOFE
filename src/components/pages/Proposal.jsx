@@ -94,8 +94,8 @@ function Proposal() {
             return address; // No need to truncate
         }
 
-        const prefix = address.slice(0, 2); // Get the "0x" prefix
-        const truncatedPart = '...'; // You can replace this with any string you want
+        const prefix = address.slice(0, 4); // Get the "0x" prefix
+        const truncatedPart = '....'; // You can replace this with any string you want
         const suffix = address.slice(-length);
 
         return `${prefix}${truncatedPart}${suffix}`;
@@ -225,7 +225,7 @@ function Proposal() {
 
                     <img src={avatar} alt="" />
                     <span>{proposal &&
-                        proposal.proposer
+                        truncateAddress(proposal.proposer)
                     }</span>
 
                     <div className='shareBtn'>
