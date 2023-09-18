@@ -26,6 +26,17 @@ function Home() {
         setProposalsCount(formattedProposals.length);
         // setProposals(tx);
     }
+    function truncateAddress(address, length = 10) {
+        if (address.length <= length) {
+            return address; // No need to truncate
+        }
+
+        const prefix = address.slice(0, 4); // Get the "0x" prefix
+        const truncatedPart = '....'; // You can replace this with any string you want
+        const suffix = address.slice(-length);
+
+        return `${prefix}${truncatedPart}${suffix}`;
+    }
     const onSubmit = (e) => {
         e.preventDefault();
         const val = e.target.search.value.trim().toLowerCase();
@@ -65,7 +76,7 @@ function Home() {
                                 <div className="box-header">
                                     <div className="sec1">
                                         <img src={avatar} alt="avatar" />
-                                        <p>{proposal.proposer}</p>
+                                        <p>{truncateAddress(proposal.proposer)}</p>
                                     </div>
                                     {
                                         proposal.timeElapse ?
