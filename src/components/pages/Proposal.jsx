@@ -130,6 +130,16 @@ function Proposal() {
                 setLoading(true);
                 const tx = await contract.executeProposal(parseInt(id));
                 setLoading(false);
+                toast.success('Proposal Executed successfully!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             }
         } catch (error) {
             // console.log();
@@ -144,6 +154,7 @@ function Proposal() {
                     progress: undefined,
                     theme: "dark",
                 });
+                fetchProposal()
             }
         }
 
