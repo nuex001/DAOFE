@@ -18,7 +18,7 @@ function Nav() {
     }
     return (
         <nav>
-            <a href="/">Invigoratedao</a>
+            <a href="/">DigiGovernance</a>
             <ul>
                 <li>
                     <ConnectButton.Custom>

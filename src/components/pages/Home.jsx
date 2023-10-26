@@ -53,8 +53,8 @@ function Home() {
     return (
         <div className='home'>
             <div className="sidebar">
-                <img src="logo1.png" alt="" />
-                <h1>Buildl <BsFillPatchCheckFill /></h1>
+                <img src="logo1.svg" alt="" />
+                <h1>DigiGovt <BsFillPatchCheckFill /></h1>
                 <h2>{proposalsCount} Proposals</h2>
             </div>
             <main>
