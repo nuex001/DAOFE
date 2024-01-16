@@ -7,11 +7,14 @@ import avatar from "../../assets/nft5.jpg"
 import { contractAbi, contractAddress } from '../../utils/constants'
 import { ethers } from 'ethers'
 import { formatProposals } from '../../utils/utils'
+import { useWalletClient } from 'wagmi'
+import { useEthersSigner } from '../../utils/ethers'
 function Home() {
     const [initialData, setInitialData] = useState([]);
     const [proposals, setProposals] = useState([]);
     const [proposalsCount, setProposalsCount] = useState(0);
-    // const listRef = useRef([]);
+    const signer = useEthersSigner();
+    const { data: walletClient } = useWalletClient();
     const fetchProposals = async () => {
         const provider = new ethers.providers.JsonRpcProvider(import.meta.env.VITE_PUBLIC_RPC_URL);
         const contract = new ethers.Contract(
@@ -21,6 +24,7 @@ function Home() {
         );
         const tx = await contract.getAllProposals();
         const formattedProposals = await formatProposals(tx);
+        console.log(formattedProposals);
         setProposals(formattedProposals);
         setInitialData(formattedProposals);
         setProposalsCount(formattedProposals.length);
@@ -47,6 +51,17 @@ function Home() {
             setProposals(initialData);
         }
     }
+    const RequestToken = async (e) => {
+        e.preventDefault();
+        if (walletClient) {
+            const contract = new ethers.Contract(
+                contractAddress,
+                contractAbi,
+                signer
+            );
+            await contract.RequestVoterToken();
+        }
+    }
     useEffect(() => {
         fetchProposals();
     }, [])
@@ -64,7 +79,10 @@ function Home() {
                         <label htmlFor="search"><ImSearch className="icon" /></label>
                         <input type="text" placeholder='search' id='search' name='search' />
                     </form>
-                    <Link to={"/create"}>New proposal</Link>
+                    <div className="links">
+                        <Link to={"/create"}>New proposal</Link>
+                        <Link onClick={RequestToken}>Request Token</Link>
+                    </div>
                 </div>
 
                 <div className="rows">

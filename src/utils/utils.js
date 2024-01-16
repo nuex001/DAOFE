@@ -127,7 +127,7 @@ export const formatProposal = async (tx) => {
             const timeString = `${weeks > 0 ? weeks + "w, " : ""}${days > 0 ? days + "d, " : ""}${hours > 0 ? hours + "h, " : ""}${minutes > 0 ? minutes + "m, " : ""}${seconds > 0 ? seconds + "s" : ""}`;
             time = timeString.length > 0 ? timeString : "";
         }
-
+console.log(tx.description);
         const description = (await readProposalIPFSContent(tx.description)) ?? {};
         const startDate = formateDate(tx.startTime)
         const endDate = formateDate(tx.endTime)

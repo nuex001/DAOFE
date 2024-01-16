@@ -70,7 +70,7 @@
 }
 
 .home main .header form {
-    width: 40%;
+    width: 70%;
     height: 50px;
     display: flex;
     align-items: center;
@@ -95,6 +95,14 @@
     outline: none;
     color: #fff;
     font-size: 1.8em;
+}
+
+.home main .header .links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
 }
 
 .home main .header a {
@@ -228,14 +236,16 @@
         width: 100%;
     }
 
-    .home main .header a {
+    .home main .header .links{
         width: 100%;
-        height: 50px;
+    }
+    .home main .header a {
+        padding: 1em 4em;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 2em;
         font-size: 2em;
+        margin: 0em auto;
     }
 
     .home main .rows .box h3 {

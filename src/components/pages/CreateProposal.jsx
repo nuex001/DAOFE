@@ -8,6 +8,7 @@ import { useEthersSigner } from '../../utils/ethers';
 import { useWalletClient } from 'wagmi'
 import { contractAbi, contractAddress } from '../../utils/constants';
 import { ethers } from 'ethers';
+import { NFTStorage, File } from 'nft.storage'
 
 function CreateProposal() {
   const [connected, setConnected] = useState(false);
@@ -24,7 +25,9 @@ function CreateProposal() {
   const { data: walletClient } = useWalletClient();
   const [error, setError] = useState(false);
   const [success, setsuccess] = useState(false);
-
+  // create a new NFTStorage client using our API key
+  const NFT_STORAGE_KEY = import.meta.env.VITE_IPFS_SECRET
+  const nftstorage = new NFTStorage({ token: NFT_STORAGE_KEY });
   const saveToContract = async (desc) => {
     try {
       if (walletClient) {
@@ -44,14 +47,13 @@ function CreateProposal() {
         })
         setsuccess(true);
         setTimeout(() => {
-        setsuccess(false);
+          setsuccess(false);
         }, 5000);
       }
     } catch (error) {
       // console.log(error);
     }
   }
-
   const onSubmit = async (e) => {
     e.preventDefault();
     if (walletClient) {
@@ -70,12 +72,15 @@ function CreateProposal() {
           const altText = match.slice(1, -1); // Remove square brackets
           return `<img src="${url}" alt="">`;
         });
-        const { cid } = await ipfs.add(htmlText);
+
+        // Convert htmlText to Blob
+        const content = new Blob([htmlText], { type: 'text/html' });
+        const cid = await nftstorage.storeBlob(content);
         // setContent(htmlText);
         // save to contract
-      await  saveToContract(cid.toString());
-      setSubmitLoading(false);
-      }else{
+        await saveToContract(cid);
+        setSubmitLoading(false);
+      } else {
         setError(true)
       }
     }
@@ -88,10 +93,11 @@ function CreateProposal() {
   const uploadImg = async (e) => {
     setLoading(true);
     const file = e.target.files[0];
-    const { cid } = await ipfs.add(file);
+    const content = new Blob([file], { type: file.type });
+    const cid = await nftstorage.storeBlob(content);
     setFormTxt({
       ...formTxt,
-      description: `${formTxt.description}\n[https://ipfs.io/ipfs/${cid.toString()}]`,
+      description: `${formTxt.description}\n[https://ipfs.io/ipfs/${cid}]`,
     });
     e.target.value = null;
     setLoading(false);
@@ -130,19 +136,19 @@ function CreateProposal() {
         }
         {
           error &&
-          <p className="info" style={{color:"crimson"}}>
+          <p className="info" style={{ color: "crimson" }}>
             <BiError /> Please Fill all Inputs.
           </p>
         }
         {
           submitLoading &&
           <p className="info">
-            <AiOutlineLoading3Quarters className='loadingIcon'/> Loading...
+            <AiOutlineLoading3Quarters className='loadingIcon' /> Loading...
           </p>
         }
         {
           success &&
-          <p className="info" style={{color:"green"}}>
+          <p className="info" style={{ color: "green" }}>
             Proposal created.
           </p>
         }
